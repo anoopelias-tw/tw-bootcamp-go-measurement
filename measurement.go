@@ -17,7 +17,7 @@ type Measurement struct {
 	unit  unit
 }
 
-func (m *Measurement) Equals(o *Length) bool {
+func (m *Measurement) Equals(o *Measurement) bool {
 	return m.toBaseUnit() == o.toBaseUnit()
 }
 
