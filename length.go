@@ -1,22 +1,18 @@
 package main
 
-const (
-	Meter = iota
-	Kilometer
-	Centimeter
-)
+var Meter = unit{100}
+var Kilometer = unit{100000}
+var Centimeter = unit{1}
+
+type unit struct {
+	conv int
+}
 
 type Length struct {
 	value int
 }
 
-var units = map[int]int{
-	Centimeter: 1,
-	Meter:      100,
-	Kilometer:  100000,
-}
-
-func NewLength(value int, unit int) Length {
-	value *= units[unit]
+func NewLength(value int, unit unit) Length {
+	value *= unit.conv
 	return Length{value: value}
 }
