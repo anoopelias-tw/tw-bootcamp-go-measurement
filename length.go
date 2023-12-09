@@ -1,8 +1,8 @@
 package main
 
-var Meter = unit{100}
-var Kilometer = unit{100000}
-var Centimeter = unit{1}
+var MeterUnit = unit{100}
+var KilometerUnit = unit{100000}
+var CentimeterUnit = unit{1}
 
 type unit struct {
 	conv float32
@@ -19,6 +19,18 @@ func (l *Length) Equals(o *Length) bool {
 
 func NewLength(value float32, u unit) Length {
 	return Length{value: value, unit: u}
+}
+
+func Meter(value float32) Length {
+	return NewLength(value, MeterUnit)
+}
+
+func Kilometer(value float32) Length {
+	return NewLength(value, KilometerUnit)
+}
+
+func Centimeter(value float32) Length {
+	return NewLength(value, CentimeterUnit)
 }
 
 func (l *Length) Id() float32 {
