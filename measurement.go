@@ -1,14 +1,14 @@
 package main
 
-type unit struct {
+type measurementUnit struct {
 	conv float32
 }
 
-func (u *unit) toBaseUnit(val float32) float32 {
+func (u *measurementUnit) toBaseUnit(val float32) float32 {
 	return val * u.conv
 }
 
-func (u *unit) fromBaseUnit(val float32) float32 {
+func (u *measurementUnit) fromBaseUnit(val float32) float32 {
 	return val / u.conv
 }
 

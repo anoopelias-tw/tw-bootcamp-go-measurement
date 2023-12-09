@@ -62,7 +62,7 @@ var _ = Describe("Length", func() {
 	It("should add 1 kilometer to 300 meters and give 1.3 kilometer", func() {
 		length1 := Kilometer(1)
 		length2 := Meter(300)
-		expected := NewLength(1.3, KilometerUnit)
+		expected := Kilometer(1.3)
 		Expect(length1.Add(&length2)).To(Equal(expected))
 	})
 	It("should add 500 meter to 1 kilometer and give 1500 meter", func() {

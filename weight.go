@@ -1,8 +1,8 @@
 package main
 
-var GramUnit = unit{1000}
-var KilogramUnit = unit{1000000}
-var MilligramUnit = unit{1}
+var GramUnit = measurementUnit{1000}
+var KilogramUnit = measurementUnit{1000000}
+var MilligramUnit = measurementUnit{1}
 
 type Weight struct {
 	Measurement
@@ -18,13 +18,13 @@ func NewWeight(value float32, u unit) Weight {
 }
 
 func Gram(value float32) Weight {
-	return NewWeight(value, GramUnit)
+	return NewWeight(value, &GramUnit)
 }
 
 func Kilogram(value float32) Weight {
-	return NewWeight(value, KilogramUnit)
+	return NewWeight(value, &KilogramUnit)
 }
 
 func Milligram(value float32) Weight {
-	return NewWeight(value, MilligramUnit)
+	return NewWeight(value, &MilligramUnit)
 }

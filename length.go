@@ -1,8 +1,8 @@
 package main
 
-var MeterUnit = unit{100}
-var KilometerUnit = unit{100000}
-var CentimeterUnit = unit{1}
+var MeterUnit = measurementUnit{100}
+var KilometerUnit = measurementUnit{100000}
+var CentimeterUnit = measurementUnit{1}
 
 type Length struct {
 	Measurement
@@ -13,15 +13,15 @@ func NewLength(value float32, u unit) Length {
 }
 
 func Meter(value float32) Length {
-	return NewLength(value, MeterUnit)
+	return NewLength(value, &MeterUnit)
 }
 
 func Kilometer(value float32) Length {
-	return NewLength(value, KilometerUnit)
+	return NewLength(value, &KilometerUnit)
 }
 
 func Centimeter(value float32) Length {
-	return NewLength(value, CentimeterUnit)
+	return NewLength(value, &CentimeterUnit)
 }
 
 func (l *Length) Add(l2 *Length) Length {
