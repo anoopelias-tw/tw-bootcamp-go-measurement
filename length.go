@@ -5,22 +5,35 @@ var Kilometer = unit{100000}
 var Centimeter = unit{1}
 
 type unit struct {
-	conv int
+	conv float32
 }
 
 type Length struct {
-	value int
+	value float32
+	unit  unit
 }
 
 func (l *Length) Equals(o *Length) bool {
-	return l.value == o.value
+	return toBaseUnit(l) == toBaseUnit(o)
 }
 
-func NewLength(value int, unit unit) Length {
-	value *= unit.conv
-	return Length{value: value}
+func NewLength(value float32, u unit) Length {
+	return Length{value: value, unit: u}
 }
 
-func (l *Length) Id() int {
-	return l.value
+func (l *Length) Id() float32 {
+	return toBaseUnit(l)
+}
+
+func (l *Length) Add(l2 *Length) Length {
+	result := toBaseUnit(l) + toBaseUnit(l2)
+	return fromBaseUnit(result, l.unit)
+}
+
+func toBaseUnit(l *Length) float32 {
+	return l.value * l.unit.conv
+}
+
+func fromBaseUnit(value float32, unit unit) Length {
+	return NewLength(value/unit.conv, unit)
 }

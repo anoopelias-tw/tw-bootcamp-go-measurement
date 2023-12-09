@@ -27,7 +27,7 @@ var _ = Describe("Length", func() {
 		Expect(length.Equals(&expected)).To(BeTrue())
 	})
 	It("should be able to put and get values from a map", func() {
-		m := make(map[int]int)
+		m := make(map[float32]int)
 		length := NewLength(1000, Meter)
 		m[length.Id()] = 5
 		expected := NewLength(1, Kilometer)
@@ -52,5 +52,24 @@ var _ = Describe("Length", func() {
 		length := NewLength(200000, Centimeter)
 		expected := NewLength(2, Kilometer)
 		Expect(length.Equals(&expected)).To(BeTrue())
+	})
+	It("should add 1000 meter to 1000 meter and give 2000 meters", func() {
+		length1 := NewLength(1000, Meter)
+		length2 := NewLength(1000, Meter)
+		expected := NewLength(2000, Meter)
+		Expect(length1.Add(&length2)).To(Equal(expected))
+	})
+	It("should add 1 kilometer to 300 meters and give 1.3 kilometer", func() {
+		length1 := NewLength(1, Kilometer)
+		length2 := NewLength(300, Meter)
+		expected := NewLength(1.3, Kilometer)
+		Expect(length1.Add(&length2)).To(Equal(expected))
+	})
+
+	It("should add 500 meter to 1 kilometer and give 1500 meter", func() {
+		length1 := NewLength(500, Meter)
+		length2 := NewLength(1, Kilometer)
+		expected := NewLength(1500, Meter)
+		Expect(length1.Add(&length2)).To(Equal(expected))
 	})
 })
