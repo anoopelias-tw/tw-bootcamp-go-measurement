@@ -12,7 +12,15 @@ type Length struct {
 	value int
 }
 
+func (l *Length) Equals(o *Length) bool {
+	return l.value == o.value
+}
+
 func NewLength(value int, unit unit) Length {
 	value *= unit.conv
 	return Length{value: value}
+}
+
+func (l *Length) Id() int {
+	return l.value
 }
